@@ -1,0 +1,17 @@
+{% load socialaccount %}
+<html>
+  <head>
+    <title>Profile</title>
+  </head>
+  {% block content %}
+
+  <h1>Profile</h1>
+  {% if user.is_authenticated %}
+  <p>Welcome, {{ user.username }}!</p>
+ 
+  {% else %}
+  <p>Welcome, frend!</p>
+  {% endif %}
+
+  {% endblock %}
+</html>
