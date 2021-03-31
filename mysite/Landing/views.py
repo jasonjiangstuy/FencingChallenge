@@ -13,5 +13,5 @@ def profile(request):
     for attr, value in vars(current_user).items():
         print("Attribute: " + str(attr or ""))
         print("Value: " + str(value or ""))
-    print(current_user._wrapped.username)
+    print(current_user._wrapped.email)
     return render(request, "account/profile.html")
