@@ -1,0 +1,30 @@
+{% load static %}
+
+Monthly goal: XXX Pushups
+We have done: XXX Pushups
+
+
+{% if user.is_authenticated %}
+Your pushup vids:
+
+Upload a video:
+
+<form action="{% url 'go' %}">
+    <label for="img">Select video:</label>
+    <input type="file" id="videoInput" accept="video/*"/>
+    <button id="submit">
+        Submit
+    </button>
+</form>
+
+{% else %}
+<p>Welcome, 
+    <a href="{% url 'account_login' %}">
+    Log in
+    </a>
+
+    to submit your own video</p>
+{% endif %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'js/go.js' %}"></script>
