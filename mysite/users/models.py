@@ -26,7 +26,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 class video(models.Model):
-    videoUrl = models.CharField(max_length = 40) # we input the url // figure out max length later
+    videofile= models.FileField(upload_to='videos/', null=True, verbose_name="")
+    # videoUrl = models.CharField(max_length = 40) # we input the url // figure out max length later
     author = models.CharField(max_length = 20) # user id 
     timestamp = models.DateTimeField(auto_now = True)
     expectedCount = models.IntegerField(validators = [MinValueValidator(0)], default = 0)

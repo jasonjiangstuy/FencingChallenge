@@ -8,14 +8,20 @@ Your pushup vids:
 
 Upload a video:
 
-<form id="FormStarter">
+<!-- <form id="FormStarter">
     {% csrf_token %} 
 </form>
     <label for="img">Select video:</label>
     <input type="file" id="videoInput" accept="video/*"/>
     <button id="submit">
         Submit
-    </button>
+    </button> -->
+<form enctype="multipart/form-data" method="POST" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Upload"/>
+</form>
+    
 
 
 {% else %}

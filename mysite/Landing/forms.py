@@ -4,4 +4,5 @@ MyModel1 = apps.get_model('users', 'video')
 
 class VideoForm(forms.ModelForm):
     class Meta:
-        model= video
+        model=MyModel1
+        fields= ["expectedCount", "videofile"]

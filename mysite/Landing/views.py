@@ -2,9 +2,13 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+from django.apps import apps
+MyModel1 = apps.get_model('users', 'video')
+from .forms import VideoForm
 
 
 # Create your views here.
+
 from django.http import HttpResponse
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
@@ -22,21 +26,29 @@ def profile(request):
 
 @csrf_exempt
 def go(request):
+
+    form= VideoForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        form.save()
+
     current_user = request.user
 
     for key, value in request.POST.items():
         # print('Key: %s' % (key) ) 
-        print(f'Key: {key}') in Python >= 3.7
+        print(f'Key: {key}')# in Python >= 3.7
         # print('Value %s' % (value) )
-        print(f'Value: {value}') in Python >= 3.7
+        print(f'Value: {value}')# in Python >= 3.7
 
     # print(current_user.id)
-    videoInput = request.POST.get("videoInput", False)
-    print(videoInput)
-    if (videoInput):
+    # videoInput = request.POST.get("videoInput", False)
+    # print(videoInput)
+    # if (videoInput):
         
-        # send to cloud
-        pass
+    #     # send to cloud
+    #     pass
 
-    return render(request, "Landing/go.html")
+    context = {
+        "form":form
+    }
+    return render(request, "Landing/go.html", context)
         
