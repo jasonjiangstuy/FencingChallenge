@@ -1,5 +1,9 @@
 $( document ).ready(function(){
-    $("submit").on( "click", sendForm );
+    console.log("Document Loaded");
+    $("#submit").click(function(event){
+        event.preventDefault();
+    });
+    $("#submit").on( "click", sendForm );
 })
 
 function sendForm(){
@@ -7,18 +11,24 @@ function sendForm(){
     const videoInput = $('#videoInput').prop('files')[0];
     var sendRequest = false;
     if (videoInput != undefined){
+        console.log(videoInput);
         sendRequest = true;
         console.log('form includes videoInput');
         fd.append('videoInput', videoInput);
     }
+    
     if (sendRequest){
+        console.log(fd);
+        fd.forEach(function(key, value){
+            console.log(key + " : " + value);
+        })
         $.ajax({
             type : 'POST',
             url : '/go',
             data: fd,
             processData: false,  // tell jQuery not to process the data
             contentType: false,   // tell jQuery not to set contentType
-            success: sentSuccess,
+            success: sendSuccess,
             error: function(e) {
                 console.log(e);
             },

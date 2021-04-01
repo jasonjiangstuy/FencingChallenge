@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+
 
 # Create your views here.
 from django.http import HttpResponse
@@ -18,12 +20,21 @@ def profile(request):
     print(current_user._wrapped.email)
     return render(request, "account/profile.html")
 
+@csrf_exempt
 def go(request):
     current_user = request.user
+
+    for key, value in request.POST.items():
+        # print('Key: %s' % (key) ) 
+        print(f'Key: {key}') in Python >= 3.7
+        # print('Value %s' % (value) )
+        print(f'Value: {value}') in Python >= 3.7
+
     # print(current_user.id)
     videoInput = request.POST.get("videoInput", False)
+    print(videoInput)
     if (videoInput):
-        print(videoInput)
+        
         # send to cloud
         pass
 

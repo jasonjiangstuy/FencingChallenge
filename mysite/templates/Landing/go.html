@@ -1,5 +1,4 @@
 {% load static %}
-
 Monthly goal: XXX Pushups
 We have done: XXX Pushups
 
@@ -9,13 +8,15 @@ Your pushup vids:
 
 Upload a video:
 
-<form action="{% url 'go' %}">
+<form id="FormStarter">
+    {% csrf_token %} 
+</form>
     <label for="img">Select video:</label>
     <input type="file" id="videoInput" accept="video/*"/>
     <button id="submit">
         Submit
     </button>
-</form>
+
 
 {% else %}
 <p>Welcome, 
@@ -27,4 +28,4 @@ Upload a video:
 {% endif %}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="{% static 'js/go.js' %}"></script>
+<script src="{% static 'Landing/js/go.js' %}"></script>
