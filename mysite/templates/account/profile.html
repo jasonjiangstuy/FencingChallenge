@@ -8,7 +8,13 @@
   <h1>Profile</h1>
   {% if user.is_authenticated %}
   <p>Welcome, {{ user.email }}!</p>
- 
+  <a href="{% url 'Landing:go'%}">
+    Go to challenges
+  </a>
+  <br/>
+  <a href="{% url 'account_logout' %}">
+    Logout
+  </a>
   {% else %}
   <p>Welcome, frend!</p>
   {% endif %}

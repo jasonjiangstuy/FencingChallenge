@@ -6,3 +6,6 @@ class VideoForm(forms.ModelForm):
     class Meta:
         model=MyModel1
         fields= ["expectedCount", "videofile"]
+        labels = {
+        "expectedCount": "How many did you do?"
+    }

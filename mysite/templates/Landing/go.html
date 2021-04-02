@@ -1,11 +1,32 @@
 {% load static %}
-Monthly goal: XXX Pushups
-We have done: XXX Pushups
+{% if user.is_authenticated %}
+  <p>Welcome, {{ user.email }}!</p>
+  <a href="{% url 'account_logout' %}">
+    Logout
+  </a><br>
+{% endif %}
 
+{% for challenge in challengeList %}
+    <!-- Name -->
+    {{challenge.name}}
+    <br/>
+    <!-- discription -->
+    {{challenge.discription}}
+    <br/>
+    <!-- Goal -->
+    goal: {{challenge.targetCount}} {{challenge.workoutName}}
+    <br/>
+    <!-- current -->
+    We have done: {{challenge.currentCount}} {{challenge.workoutName}}
+    <br/>
+    <!-- time left -->
+    time left:
+    <br/>
+{% endfor %}
 
 {% if user.is_authenticated %}
 Your pushup vids:
-
+<br/><br/>
 Upload a video:
 
 <!-- <form id="FormStarter">

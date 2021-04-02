@@ -31,3 +31,14 @@ class video(models.Model):
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE) # user id 
     timestamp = models.DateTimeField(auto_now = True)
     expectedCount = models.IntegerField(validators = [MinValueValidator(0)], default = 0)
+
+class challenge(models.Model):
+    targetCount = models.IntegerField(validators = [MinValueValidator(0)], default = 100)
+    currentCount = models.IntegerField(validators = [MinValueValidator(0)], default = 0)
+    timeStart = models.DateTimeField(auto_now = True)
+    timeEnd = models.DateTimeField()
+    name = models.CharField(max_length=40)
+    description = models.TextField(default="No Description")
+    workoutName = models.CharField(max_length=10, default="Pushups")
+    def __str__(self):
+        return self.name

@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.apps import apps
-MyModel1 = apps.get_model('users', 'video')
+# MyModel1 = apps.get_model('users', 'video')
 from .forms import VideoForm
 
 
@@ -24,6 +24,7 @@ def profile(request):
     print(current_user._wrapped.email)
     return render(request, "account/profile.html")
 
+challenges = apps.get_model('users', 'challenge')
 @csrf_exempt
 def go(request):
 
@@ -36,23 +37,12 @@ def go(request):
 
     current_user = request.user
 
-    for key, value in request.POST.items():
-        # print('Key: %s' % (key) ) 
-        # print('Value %s' % (value) )
-        # in Python >= 3.7
-        print(f'Key: {key}')
-        print(f'Value: {value}')# in Python >= 3.7
-
-    # print(current_user.id)
-    # videoInput = request.POST.get("videoInput", False)
-    # print(videoInput)
-    # if (videoInput):
-        
-    #     # send to cloud
-    #     pass
-
+    challenge_list = challenges.objects.all()
+    for challenge in challenge_list:
+        print(challenge.name)
     context = {
-        "form":form
+        "form":form,
+        "challengeList":challenge_list,
     }
     return render(request, "Landing/go.html", context)
         
