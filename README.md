@@ -1,7 +1,7 @@
 # FencingChallenge
 
-To do:
-Limit email to stuy students
-Build video upload
-    - send up to google cloud storage
-    - build 
+How to run 
+pip -r requirement.txt
+cd mysite
+python3 manage.py runserver
+go to 
