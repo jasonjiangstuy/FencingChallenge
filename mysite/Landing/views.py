@@ -29,14 +29,18 @@ def go(request):
 
     form= VideoForm(request.POST or None, request.FILES or None)
     if form.is_valid():
-        form.save()
+        prep = form.save(commit=False)
+        prep.author = request.user
+        prep.save()
+        return render(request, "Landing/success.html")
 
     current_user = request.user
 
     for key, value in request.POST.items():
         # print('Key: %s' % (key) ) 
-        print(f'Key: {key}')# in Python >= 3.7
         # print('Value %s' % (value) )
+        # in Python >= 3.7
+        print(f'Key: {key}')
         print(f'Value: {value}')# in Python >= 3.7
 
     # print(current_user.id)

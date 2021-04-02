@@ -28,19 +28,10 @@ function sendForm(){
             data: fd,
             processData: false,  // tell jQuery not to process the data
             contentType: false,   // tell jQuery not to set contentType
-            success: sendSuccess,
             error: function(e) {
                 console.log(e);
             },
         });
     }  
 
-}
-
-function sendSuccess(data){
-    if (data == "success"){
-        alert("edits successful");
-      }else {
-        alert(data);
-      }
 }
