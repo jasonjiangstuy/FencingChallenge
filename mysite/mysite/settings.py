@@ -23,12 +23,28 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'q%5_4$#0)zz-s@i3t(ie)w-z&%!#w$6+nornc=&)v5^j1-yz@)'
+def generate_secret_key(path):
+    # create new file
+    f = open(path,"w+")
+    from django.utils.crypto import get_random_string
+    chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
+    f.write("SECRET_KEY = \'" + get_random_string(50, chars) + "\'")
+    f.close() 
+
+try:
+    from .secret_key import SECRET_KEY
+except ImportError:
+    SETTINGS_DIR = os.path.abspath(os.path.dirname(__file__))
+    generate_secret_key(os.path.join(SETTINGS_DIR, 'secret_key.py'))
+    from .secret_key import SECRET_KEY
+
+
+# SECRET_KEY = 'q%5_4$#0)zz-s@i3t(ie)w-z&%!#w$6+nornc=&)v5^j1-yz@)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["192.168.86.235", "67.82.211.17", "stuyfencingclub.studio"]
+ALLOWED_HOSTS = ["127.0.0.1","192.168.86.235", "67.82.211.17", "stuyfencingclub.studio"]
 
 
 # Application definition
