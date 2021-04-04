@@ -3,9 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.apps import apps
-# MyModel1 = apps.get_model('users', 'video')
-from .forms import VideoForm
 
+from .forms import VideoForm
 
 # Create your views here.
 
@@ -25,9 +24,9 @@ def profile(request):
     return render(request, "account/profile.html")
 
 challenges = apps.get_model('users', 'challenge')
+Video = apps.get_model('users', 'Video')
 @csrf_exempt
 def go(request):
-
     form= VideoForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         prep = form.save(commit=False)
@@ -37,12 +36,19 @@ def go(request):
 
     current_user = request.user
 
+    # get all challenges
     challenge_list = challenges.objects.all()
     for challenge in challenge_list:
         print(challenge.name)
+
+    # get all videos from this user
+    user_videos = Video.objects.filter(author=current_user)
+
     context = {
         "form":form,
         "challengeList":challenge_list,
+        "user_videos" : user_videos,
     }
     return render(request, "Landing/go.html", context)
+
         

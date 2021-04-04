@@ -43,7 +43,14 @@ Upload a video:
     <input type="submit" value="Upload"/>
 </form>
     
+{% for video in user_videos %}
 
+<video width='400' controls>
+<source src='{{ MEDIA_URL }}{{ video.videofile }}' type='video/mp4'>
+Your browser does not support the video tag.
+</video>
+
+{% endfor %}
 
 {% else %}
 <p>Welcome, 
