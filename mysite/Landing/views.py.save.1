@@ -40,16 +40,15 @@ def go(request):
     challenge_list = challenges.objects.all()
     for challenge in challenge_list:
         print(challenge.name)
+
+    # get all videos from this user
+    user_videos = Video.objects.filter(author=current_user)
+
     context = {
         "form":form,
         "challengeList":challenge_list,
+        "user_videos" : user_videos,
     }
-    # get all videos from this user
-    if (not current_user.is_anonymous):
-        user_videos = Video.objects.filter(author=current_user)
-        context["user_videos"] = user_videos
-
-
     return render(request, "Landing/go.html", context)
 
         
