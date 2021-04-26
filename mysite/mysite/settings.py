@@ -42,7 +42,7 @@ except ImportError:
 # SECRET_KEY = 'q%5_4$#0)zz-s@i3t(ie)w-z&%!#w$6+nornc=&)v5^j1-yz@)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1","192.168.86.235", "67.82.211.17", "stuyfencingclub.studio"]
 

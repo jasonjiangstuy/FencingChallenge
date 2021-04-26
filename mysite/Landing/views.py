@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.apps import apps
-
+from django.template import loader
 from .forms import VideoForm
 
 # Create your views here.
@@ -51,5 +51,14 @@ def go(request):
 
 
     return render(request, "Landing/go.html", context)
-
-        
+@csrf_exempt
+def test(request):
+    numOfCookies = int(request.GET.get("input"))
+    print(numOfCookies)
+    response = HttpResponse()
+    for i in range(numOfCookies):
+        response.set_cookie(str(i), str(i))
+    template = loader.get_template('Landing/test.html')
+    response.write(template.render())
+    return response
+    # return render(request, "Landing/test.html")
